@@ -42,4 +42,4 @@ class DestroyAccountButton extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(DestroyAccountButton);
+export default connect(state => ({ auth: state.get('auth') }))(DestroyAccountButton);

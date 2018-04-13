@@ -47,4 +47,4 @@ class SignOutButton extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(SignOutButton);
+export default connect(state => ({ auth: state.get('auth') }))(SignOutButton);

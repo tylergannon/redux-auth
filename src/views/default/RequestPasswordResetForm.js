@@ -81,4 +81,4 @@ class RequestPasswordResetForm extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(RequestPasswordResetForm);
+export default connect(state => ({ auth: state.get('auth') }))(RequestPasswordResetForm);
