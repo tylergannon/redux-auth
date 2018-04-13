@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
-import * as Colors from "material-ui/styles/colors";
+import red from 'material-ui/colors/red';
 import TextField from "material-ui/TextField";
-import AlertError from "material-ui/svg-icons/alert/error";
+import Icon from 'material-ui/Icon';
 import Immutable from "immutable";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -32,13 +32,16 @@ class AuthInput extends React.Component {
               <p className="inline-error-item"
                  style={{paddingLeft: "20px", position: "relative", marginBottom: "28px"}}
                  key={i}>
-                <AlertError
+                <Icon
                   viewBox="0 0 50 50"
-                  color={Colors.red500}
+                  color={red[500]}
                   style={{
                     position: "absolute",
                     left: 0,
-                    top: 0}} />
+                  top: 0}}
+                  >
+                  error
+                </Icon>
                 {this.props.floatingLabelText} {err}
               </p>
             );

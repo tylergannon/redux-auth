@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
-import * as Colors from "material-ui/styles/colors";
-import AlertError from "material-ui/svg-icons/alert/error";
+import red from 'material-ui/colors/red';
 import Immutable from "immutable";
+import Icon from 'material-ui/Icon';
 
 class ErrorList extends React.Component {
   static propTypes = {
@@ -30,13 +30,17 @@ class ErrorList extends React.Component {
                 className="control-label modal-error-item"
                 style={{paddingLeft: "20px", position: "relative"}}>
 
-                <AlertError
+                <Icon
                   viewBox="0 0 50 50"
-                  color={Colors.red500}
+                  color={red[500]}
                   style={{
                     position: "absolute",
                     left: 0,
-                    top: 3}} /> {err}
+                    top: 3}}
+                  >
+                  error
+                </Icon>
+                {err}
               </p>
             );
           })}
@@ -45,13 +49,17 @@ class ErrorList extends React.Component {
     } else {
       return (
         <p style={{paddingLeft: "20px", position: "relative"}}>
-          <AlertError
+          <Icon
             viewBox="0 0 50 50"
             style={{
               position: "absolute",
               left: 0,
               top: 3}}
-            color={Colors.red500} /> There was an error processing this form.
+            color={red[500]}
+            >
+            error
+          </Icon>
+          There was an error processing this form.
           Please check each field and try again.
         </p>
       );
