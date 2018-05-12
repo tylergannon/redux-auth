@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
-import ActionLock from "material-ui/svg-icons/action/lock";
+import Icon from 'material-ui/Icon';
 import { updatePassword, updatePasswordFormUpdate } from "../../actions/update-password";
 import { connect } from "react-redux";
 
@@ -77,7 +77,7 @@ class UpdatePasswordForm extends React.Component {
           loading={loading}
           type="submit"
           className="update-password-submit"
-          icon={ActionLock}
+          icon={<Icon>lock</Icon>}
           primary={true}
           disabled={disabled}
           style={{float: "right"}}
@@ -90,4 +90,4 @@ class UpdatePasswordForm extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(UpdatePasswordForm);
+export default connect(state => ({ auth: state.get('auth') }))(UpdatePasswordForm);

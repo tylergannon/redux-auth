@@ -68,4 +68,4 @@ class BaseModal extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(BaseModal);
+export default connect(state => ({ auth: state.get('auth') }))(BaseModal);

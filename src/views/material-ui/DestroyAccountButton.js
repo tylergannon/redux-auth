@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import ButtonLoader from "./ButtonLoader";
 import { destroyAccount } from "../../actions/destroy-account";
-import ActionDelete from "material-ui/svg-icons/action/delete";
+import Icon from 'material-ui/Icon';
 import { connect } from "react-redux";
 
 class DestroyAccountButton extends React.Component {
@@ -12,7 +12,7 @@ class DestroyAccountButton extends React.Component {
 
   static defaultProps = {
     children: <span>Destroy Account</span>,
-    icon: ActionDelete
+    icon: <Icon>delete</Icon>
   };
 
   getEndpoint () {
@@ -42,4 +42,4 @@ class DestroyAccountButton extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(DestroyAccountButton);
+export default connect(state => ({ auth: state.get('auth') }))(DestroyAccountButton);

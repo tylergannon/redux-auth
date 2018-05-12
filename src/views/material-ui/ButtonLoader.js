@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
-import RaisedButton from "material-ui/RaisedButton";
-import ActionFavorite from "material-ui/svg-icons/action/favorite";
-import * as Colors from "material-ui/styles/colors";
+import Button from "material-ui/Button";
+import Icon from 'material-ui/Icon';
+import grey from 'material-ui/colors/grey';
 import Spinner from "react-loader";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -19,7 +19,7 @@ class ButtonLoader extends React.Component {
   };
 
   static defaultProps = {
-    icon: ActionFavorite,
+    icon: <Icon>favorite</Icon>,
     loading: false,
     spinConfig: {
       lines: 10,
@@ -27,9 +27,9 @@ class ButtonLoader extends React.Component {
       width: 2,
       radius: 3,
     },
-    spinColorDark: Colors.darkBlack,
-    spinColorLight: Colors.darkWhite,
-    spinColorDisabled: Colors.minBlack,
+    spinColorDark: grey[900],
+    spinColorLight: grey[100],
+    spinColorDisabled: grey[300],
     children: <span>Submit</span>,
     style: {}
   };
@@ -109,11 +109,12 @@ class ButtonLoader extends React.Component {
 
    return (
       <MuiThemeProvider>
-        <RaisedButton
+        <Button
           {...props}
+          variant="raised"
           onClick={this.handleClick.bind(this)}>
           {this.renderIcon()}
-        </RaisedButton>
+        </Button>
       </MuiThemeProvider>
     );
   }

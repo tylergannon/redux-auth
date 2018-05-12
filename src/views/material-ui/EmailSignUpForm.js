@@ -3,7 +3,7 @@ import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
 import { emailSignUpFormUpdate, emailSignUp } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
-import ContentSend from "material-ui/svg-icons/content/send";
+import Icon from 'material-ui/Icon';
 
 class EmailSignUpForm extends React.Component {
   static propTypes = {
@@ -89,7 +89,7 @@ class EmailSignUpForm extends React.Component {
                       className="email-sign-up-submit"
                       primary={true}
                       style={{float: "right"}}
-                      icon={ContentSend}
+                      icon={<Icon>send</Icon>}
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>
@@ -100,4 +100,4 @@ class EmailSignUpForm extends React.Component {
   }
 }
 
-export default connect(({auth}) => ({auth}))(EmailSignUpForm);
+export default connect(state => ({ auth: state.get('auth') }))(EmailSignUpForm);

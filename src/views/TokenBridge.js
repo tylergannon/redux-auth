@@ -11,7 +11,8 @@ class TokenBridge extends React.Component {
   }
 }
 
-export default connect(({auth}) => {
+export default connect(state => {
+  let auth = state.get('auth');
   let headers = auth.getIn(["server", "headers"]);
 
   return {
