@@ -8,3 +8,5 @@ build/
 *.DS_Store
 npm-debug.log
 .tern-port
+bootstrap-theme.js
+bootstrap-theme.js

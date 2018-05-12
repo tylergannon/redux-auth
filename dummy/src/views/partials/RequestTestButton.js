@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import {Glyphicon} from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import {Glyphicon} from 'reactstrap';
 import {ButtonLoader} from "../../../../src/views/bootstrap";
 import {connect} from "react-redux";
 import {requestTest} from "../../actions/request-test-buttons";

@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Modal, Button, Glyphicon } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap';
 import ButtonLoader from "../ButtonLoader";
 import Input from "../Input";
 import { connect } from "react-redux";
@@ -11,12 +12,12 @@ import {
 
 class PasswordResetSuccessModal extends React.Component {
   static propTypes = {
-    show: PropTypes.bool,
+    isOpen: PropTypes.bool,
     inputProps: PropTypes.object
   };
 
   static defaultProps = {
-    show: false,
+    isOpen: false,
     inputProps: {}
   };
 
@@ -47,15 +48,15 @@ class PasswordResetSuccessModal extends React.Component {
 
     return (
       <Modal
-        show={this.props.show}
+        isOpen={this.props.isOpen}
         className="password-reset-success-modal"
         onHide={this.close.bind(this)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Reset Your Password</Modal.Title>
-        </Modal.Header>
+        <ModalHeader closeButton>
+          <ModalTitle>Reset Your Password</ModalTitle>
+        </ModalHeader>
 
         <form>
-          <Modal.Body>
+          <ModalBody>
             <Input
               type="password"
               label="Password"
@@ -77,9 +78,9 @@ class PasswordResetSuccessModal extends React.Component {
               errors={this.props.auth.getIn(["updatePasswordModal", endpoint, "errors", "password_confirmation"])}
               onChange={this.handleInput.bind(this, "password_confirmation")}
               {...this.props.inputProps.passwordConfirmation} />
-          </Modal.Body>
+          </ModalBody>
 
-          <Modal.Footer>
+          <ModalFooter>
             <Button
               className="password-reset-success-modal-close"
               onClick={this.close.bind(this)}
@@ -92,10 +93,10 @@ class PasswordResetSuccessModal extends React.Component {
               loading={loading}
               type="submit"
               className="password-reset-success-modal-submit"
-              icon={<Glyphicon glyph="lock" />}
+              icon={<i class="fas fa-lock"></i>}
               onClick={this.handleSubmit.bind(this)}
               {...this.props.inputProps.submit} />
-          </Modal.Footer>
+          </ModalFooter>
         </form>
       </Modal>
     );

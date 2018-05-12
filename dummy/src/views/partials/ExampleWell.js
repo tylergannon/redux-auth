@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Panel } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Card, CardBody, CardHeader } from 'reactstrap';
 
 class ExampleWell extends React.Component {
   static propTypes = {
@@ -8,12 +9,14 @@ class ExampleWell extends React.Component {
 
   render () {
     return (
-      <div>
-        <label>Example</label>
-        <Panel bsStyle='default'>
+      <Card>
+        <CardHeader>
+          Example
+        </CardHeader>
+        <CardBody>
           {this.props.children}
-        </Panel>
-      </div>
+        </CardBody>
+      </Card>
     );
   }
 }

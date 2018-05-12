@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Input, Glyphicon } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Input } from 'reactstrap';
 import Immutable from "immutable";
 
 class AuthInput extends React.Component {
@@ -29,7 +30,7 @@ class AuthInput extends React.Component {
                  style={{paddingLeft: "20px", position: "relative", marginBottom: "28px"}}
                  key={i}>
 
-                <Glyphicon glyph="exclamation-sign"
+                <i class="fas fa-exclamation"
                            style={{
                              position: "absolute",
                              left: 0,
@@ -50,7 +51,7 @@ class AuthInput extends React.Component {
     return (
       <div>
         <Input {...this.props}
-               bsStyle={(this.props.errors.size) ? "error" : null}
+               className={(this.props.errors.size) ? "is-invalid" : "is-valid"}
                onChange={this.handleInput.bind(this)} />
         {this.renderErrorList()}
       </div>

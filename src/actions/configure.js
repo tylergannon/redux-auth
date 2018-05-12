@@ -16,13 +16,30 @@ import {applyConfig} from "../utils/client-settings";
 import {destroySession} from "../utils/session-storage";
 import verifyAuth from "../utils/verify-auth";
 import getRedirectInfo from "../utils/parse-url";
-import {push} from "react-router-redux";
+import {push} from "../actions/navigate";
 
 export const SET_ENDPOINT_KEYS = "SET_ENDPOINT_KEYS";
 export const STORE_CURRENT_ENDPOINT_KEY = "STORE_CURRENT_ENDPOINT_KEY";
+export const CONFIGURE_START = "CONFIGURE_START";
+export const CONFIGURE_COMPLETE = "CONFIGURE_COMPLETE";
+export const CONFIGURE_ERROR = "CONFIGURE_ERROR";
+
 export function setEndpointKeys(endpoints, currentEndpointKey, defaultEndpointKey) {
   return { type: SET_ENDPOINT_KEYS, endpoints, currentEndpointKey, defaultEndpointKey };
 };
+
+export function configureStart() {
+  return { type: CONFIGURE_START };
+};
+
+export function configureComplete(config) {
+  return { type: CONFIGURE_COMPLETE, config };
+};
+
+export function configureError(errors) {
+  return { type: CONFIGURE_ERROR, errors };
+};
+
 export function storeCurrentEndpointKey(currentEndpointKey) {
   return { type: STORE_CURRENT_ENDPOINT_KEY, currentEndpointKey };
 };

@@ -1,23 +1,24 @@
-import React, { PropTypes } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import ErrorList from "../ErrorList";
 import { connect } from "react-redux";
 
 class BaseModal extends React.Component {
   static propTypes = {
-    show: PropTypes.bool,
+    isOpen: PropTypes.bool,
     errorAddr: PropTypes.array,
     closeBtnLabel: PropTypes.string
   };
 
   static defaultProps = {
-    show: false,
+    isOpen: false,
     errorAddr: null,
     closeBtnLabel: "Ok"
   };
 
   close () {
-    this.props.dispatch(this.props.closeAction());
+    this.props.dispatch(this.props.onClose());
   }
 
   getEndpoint () {
@@ -42,22 +43,22 @@ class BaseModal extends React.Component {
 
     return (
       <Modal
-        show={this.props.show}
-        className={`redux-auth-modal ${this.props.containerClass}`}
-        onHide={this.close.bind(this)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{this.props.title}</Modal.Title>
-        </Modal.Header>
+        isOpen={this.props.isOpen}
+        className={`redux-auth-modal ${this.props.className}`}
+        onClose={this.close.bind(this)}>
+        <ModalHeader closeButton>
+          <ModalTitle>{this.props.title}</ModalTitle>
+        </ModalHeader>
 
-        <Modal.Body>{body}</Modal.Body>
+        <ModalBody>{body}</ModalBody>
 
-        <Modal.Footer>
+        <ModalFooter>
           <Button
             onClick={this.close.bind(this)}
             className={`${this.props.containerClass}-close`}>
             {this.props.closeBtnLabel}
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     );
   }

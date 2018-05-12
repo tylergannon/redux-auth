@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Button, Glyphicon } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Button } from 'reactstrap';
 import Spinner from "react-loader";
 
 class ButtonLoader extends React.Component {
@@ -15,7 +16,7 @@ class ButtonLoader extends React.Component {
   };
 
   static defaultProps = {
-    icon: <Glyphicon glyph="heart" />,
+    icon: <i class="fas fa-heart"></i>,
     loading: false,
     spinConfig: {
       lines: 10,
@@ -65,11 +66,10 @@ class ButtonLoader extends React.Component {
       <Button
         onClick={this.props.onClick}
         disabled={this.props.disabled || this.props.loading}
-        bsStyle={this.props.bsStyle}
+        color={this.props.bsStyle}
         className={this.props.className}
-        type={this.props.type}
         style={this.props.style}
-        bsSize={this.props.bsSize}>
+        size={this.props.bsSize}>
         {this.renderIcon()} {this.props.children}
       </Button>
     );

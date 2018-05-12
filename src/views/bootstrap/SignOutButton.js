@@ -1,6 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react"
+import PropTypes from 'prop-types'
 import ButtonLoader from "./ButtonLoader";
-import { Glyphicon } from "react-bootstrap";
 import { connect } from "react-redux";
 import { signOut } from "../../actions/sign-out";
 
@@ -14,7 +14,7 @@ class SignOutButton extends React.Component {
   static defaultProps = {
     next: () => {},
     children: <span>Sign Out</span>,
-    icon: <Glyphicon glyph="log-out" />
+    icon: <i class="fas fa-sign-out-alt"></i>
   };
 
   getEndpoint () {

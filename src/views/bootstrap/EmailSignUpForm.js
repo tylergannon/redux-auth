@@ -1,9 +1,9 @@
-import React, { PropTypes } from "react";
+import React from "react"
+import PropTypes from 'prop-types'
 import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
 import { emailSignUpFormUpdate, emailSignUp } from "../../actions/email-sign-up";
 import { connect } from "react-redux";
-import { Glyphicon } from "react-bootstrap";
 
 class EmailSignUpForm extends React.Component {
   static propTypes = {
@@ -89,7 +89,7 @@ class EmailSignUpForm extends React.Component {
         <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                       type="submit"
                       className="email-sign-up-submit pull-right"
-                      icon={<Glyphicon glyph="send" />}
+                      icon={<i class="fab fa-telegram-plane"></i>}
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>

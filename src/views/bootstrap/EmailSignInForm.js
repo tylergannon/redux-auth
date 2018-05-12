@@ -1,30 +1,12 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from 'prop-types'
 import ButtonLoader from "./ButtonLoader";
 import Input from "./Input";
 import { emailSignInFormUpdate, emailSignIn } from "../../actions/email-sign-in";
-import { Glyphicon } from "react-bootstrap";
 import { connect } from "react-redux";
+import { Form } from 'reactstrap'
 
 class EmailSignInForm extends React.Component {
-  static propTypes = {
-    endpoint: PropTypes.string,
-    next: PropTypes.func,
-    inputProps: PropTypes.shape({
-      email: PropTypes.object,
-      password: PropTypes.object,
-      submit: PropTypes.object
-    })
-  };
-
-  static defaultProps = {
-    next: () => {},
-    inputProps: {
-      email: {},
-      password: {},
-      submit: {}
-    }
-  };
-
   getEndpoint () {
     return (
       this.props.endpoint ||
@@ -51,8 +33,7 @@ class EmailSignInForm extends React.Component {
       this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])
     );
 
-    return (
-      <form className='redux-auth email-sign-in-form clearfix'
+    return <Form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
         <Input type="text"
                groupClassName="email-sign-in-email"
@@ -76,16 +57,35 @@ class EmailSignInForm extends React.Component {
 
         <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                       type="submit"
-                      icon={<Glyphicon glyph="log-in" />}
+                      icon={<i class="fas fa-sign-in-alt"></i>}
                       className='email-sign-in-submit pull-right'
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>
           Sign In
         </ButtonLoader>
-      </form>
-    );
+      </Form>
   }
 }
+
+EmailSignInForm.propTypes = {
+  endpoint: PropTypes.string,
+  next: PropTypes.func,
+  inputProps: PropTypes.shape({
+    email: PropTypes.object,
+    password: PropTypes.object,
+    submit: PropTypes.object
+  })
+};
+
+EmailSignInForm.defaultProps = {
+  next: () => {},
+  inputProps: {
+    email: {},
+    password: {},
+    submit: {}
+  }
+};
+
 
 export default connect(state => ({ auth: state.get('auth') }))(EmailSignInForm);

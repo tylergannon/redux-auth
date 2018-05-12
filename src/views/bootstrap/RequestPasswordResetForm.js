@@ -1,7 +1,7 @@
-import React, { PropTypes } from "react";
+import React from "react"
+import PropTypes from 'prop-types'
 import Input from "./Input";
 import ButtonLoader from "./ButtonLoader";
-import { Glyphicon } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
   requestPasswordResetFormUpdate,
@@ -66,7 +66,7 @@ class RequestPasswordResetForm extends React.Component {
         <ButtonLoader
           loading={loading}
           type="submit"
-          icon={<Glyphicon glyph="send" />}
+          icon={<i class="fab fa-telegram-plane"></i>}
           className="pull-right request-password-reset-submit"
           disabled={inputDisabled || submitDisabled}
           onClick={this.handleSubmit.bind(this)}
