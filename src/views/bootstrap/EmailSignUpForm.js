@@ -58,7 +58,7 @@ class EmailSignUpForm extends React.Component {
         <Input type="text"
                label="Email"
                placeholder="Email"
-               groupClassName="email-sign-up-email"
+               groupclassname="email-sign-up-email"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "email"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "email"])}
@@ -68,7 +68,7 @@ class EmailSignUpForm extends React.Component {
         <Input type="password"
                label="Password"
                placeholder="Password"
-               groupClassName="email-sign-up-password"
+               groupclassname="email-sign-up-password"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password"])}
@@ -78,7 +78,7 @@ class EmailSignUpForm extends React.Component {
         <Input type="password"
                label="Password Confirmation"
                placeholder="Password Confirmation"
-               groupClassName="email-sign-up-password-confirmation"
+               groupclassname="email-sign-up-password-confirmation"
                disabled={disabled}
                value={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "form", "password_confirmation"])}
                errors={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "errors", "password_confirmation"])}
@@ -89,7 +89,7 @@ class EmailSignUpForm extends React.Component {
         <ButtonLoader loading={this.props.auth.getIn(["emailSignUp", this.getEndpoint(), "loading"])}
                       type="submit"
                       className="email-sign-up-submit pull-right"
-                      icon={<i class="fab fa-telegram-plane"></i>}
+                      icon={<i className="fab fa-telegram-plane"></i>}
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>

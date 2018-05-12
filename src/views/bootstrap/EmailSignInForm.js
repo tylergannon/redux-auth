@@ -6,7 +6,7 @@ import { emailSignInFormUpdate, emailSignIn } from "../../actions/email-sign-in"
 import { connect } from "react-redux";
 import { Form } from 'reactstrap'
 
-class EmailSignInForm extends React.Component {
+class EmailSignInFormClass extends React.Component {
   getEndpoint () {
     return (
       this.props.endpoint ||
@@ -24,7 +24,7 @@ class EmailSignInForm extends React.Component {
     let formData = this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form"]).toJS();
     this.props.dispatch(emailSignIn(formData, this.getEndpoint()))
       .then(this.props.next)
-      .catch(() => {});
+      // .catch(() => {});
   }
 
   render () {
@@ -33,42 +33,42 @@ class EmailSignInForm extends React.Component {
       this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])
     );
 
-    return <Form className='redux-auth email-sign-in-form clearfix'
+    return <form className='redux-auth email-sign-in-form clearfix'
             onSubmit={this.handleSubmit.bind(this)}>
         <Input type="text"
-               groupClassName="email-sign-in-email"
+               groupclassname="email-sign-in-email"
                label="Email"
                placeholder="Email"
                disabled={disabled}
-               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"])}
+               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "email"]) || ''}
                errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "email"])}
                onChange={this.handleInput.bind(this, "email")}
                {...this.props.inputProps.email} />
 
         <Input type="password"
                label="Password"
-               groupClassName="email-sign-in-password"
+               groupclassname="email-sign-in-password"
                placeholder="Password"
                disabled={disabled}
-               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"])}
+               value={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "form", "password"]) || ''}
                errors={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "errors", "password"])}
                onChange={this.handleInput.bind(this, "password")}
                {...this.props.inputProps.password} />
 
         <ButtonLoader loading={this.props.auth.getIn(["emailSignIn", this.getEndpoint(), "loading"])}
                       type="submit"
-                      icon={<i class="fas fa-sign-in-alt"></i>}
+                      icon={<i className="fas fa-sign-in-alt"></i>}
                       className='email-sign-in-submit pull-right'
                       disabled={disabled}
                       onClick={this.handleSubmit.bind(this)}
                       {...this.props.inputProps.submit}>
           Sign In
         </ButtonLoader>
-      </Form>
+      </form>
   }
 }
 
-EmailSignInForm.propTypes = {
+EmailSignInFormClass.propTypes = {
   endpoint: PropTypes.string,
   next: PropTypes.func,
   inputProps: PropTypes.shape({
@@ -78,7 +78,7 @@ EmailSignInForm.propTypes = {
   })
 };
 
-EmailSignInForm.defaultProps = {
+EmailSignInFormClass.defaultProps = {
   next: () => {},
   inputProps: {
     email: {},
@@ -87,5 +87,15 @@ EmailSignInForm.defaultProps = {
   }
 };
 
+const mapStateToProps = (state) => {
+    console.info('ASDFASDF')
+    console.info(state)
+    return {
+      auth: state.get('auth'),
+      gorth: false
+    }
+}
 
-export default connect(state => ({ auth: state.get('auth') }))(EmailSignInForm);
+export const EmailSignInForm = connect(state => ({ auth: state.get('auth') }))(EmailSignInFormClass);
+
+export default EmailSignInForm

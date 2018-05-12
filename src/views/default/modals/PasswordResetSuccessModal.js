@@ -93,7 +93,7 @@ class PasswordResetSuccessModal extends React.Component {
               loading={loading}
               type="submit"
               className="password-reset-success-modal-submit"
-              icon={<i class="fas fa-lock"></i>}
+              icon={<i className="fas fa-lock"></i>}
               onClick={this.handleSubmit.bind(this)}
               {...this.props.inputProps.submit} />
           </ModalFooter>

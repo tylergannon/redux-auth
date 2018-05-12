@@ -14,7 +14,7 @@ class SignOutButton extends React.Component {
   static defaultProps = {
     next: () => {},
     children: <span>Sign Out</span>,
-    icon: <i class="fas fa-sign-out-alt"></i>
+    icon: <i className="fas fa-sign-out-alt"></i>
   };
 
   getEndpoint () {

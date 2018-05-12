@@ -55,7 +55,7 @@ class RequestPasswordResetForm extends React.Component {
         <Input
           type="text"
           label="Email Address"
-          groupClassName="request-password-reset-email"
+          groupclassname="request-password-reset-email"
           placeholder="Email Address"
           disabled={loading || inputDisabled}
           value={this.props.auth.getIn(["requestPasswordReset", this.getEndpoint(), "form", "email"])}
@@ -66,7 +66,7 @@ class RequestPasswordResetForm extends React.Component {
         <ButtonLoader
           loading={loading}
           type="submit"
-          icon={<i class="fab fa-telegram-plane"></i>}
+          icon={<i className="fab fa-telegram-plane"></i>}
           className="pull-right request-password-reset-submit"
           disabled={inputDisabled || submitDisabled}
           onClick={this.handleSubmit.bind(this)}

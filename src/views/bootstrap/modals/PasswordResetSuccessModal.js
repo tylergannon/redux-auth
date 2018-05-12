@@ -62,7 +62,7 @@ class PasswordResetSuccessModal extends React.Component {
               label="Password"
               placeholder="Password"
               disabled={loading}
-              groupClassName="password-reset-success-modal-password"
+              groupclassname="password-reset-success-modal-password"
               value={this.props.auth.getIn(["updatePasswordModal", endpoint, "form", "password"])}
               errors={this.props.auth.getIn(["updatePasswordModal", endpoint, "errors", "password"])}
               onChange={this.handleInput.bind(this, "password")}
@@ -73,7 +73,7 @@ class PasswordResetSuccessModal extends React.Component {
               label="Password Confirmation"
               placeholder="Password Confirmation"
               disabled={loading}
-              groupClassName="password-reset-success-modal-password-confirmation"
+              groupclassname="password-reset-success-modal-password-confirmation"
               value={this.props.auth.getIn(["updatePasswordModal", endpoint, "form", "password_confirmation"])}
               errors={this.props.auth.getIn(["updatePasswordModal", endpoint, "errors", "password_confirmation"])}
               onChange={this.handleInput.bind(this, "password_confirmation")}
@@ -93,7 +93,7 @@ class PasswordResetSuccessModal extends React.Component {
               loading={loading}
               type="submit"
               className="password-reset-success-modal-submit"
-              icon={<i class="fas fa-lock"></i>}
+              icon={<i className="fas fa-lock"></i>}
               onClick={this.handleSubmit.bind(this)}
               {...this.props.inputProps.submit} />
           </ModalFooter>

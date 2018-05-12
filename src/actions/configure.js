@@ -51,7 +51,7 @@ export function configure(endpoint={}, settings={}) {
       return Promise.resolve({blank: true});
     }
 
-    dispatch(authenticateStart());
+    dispatch(authenticateStart(settings));
 
     let promise,
         firstTimeLogin,

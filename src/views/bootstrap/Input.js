@@ -7,7 +7,8 @@ class AuthInput extends React.Component {
   static propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    groupclassname: PropTypes.string
   };
 
   static defaultProps = {
@@ -30,7 +31,7 @@ class AuthInput extends React.Component {
                  style={{paddingLeft: "20px", position: "relative", marginBottom: "28px"}}
                  key={i}>
 
-                <i class="fas fa-exclamation"
+                <i className="fas fa-exclamation"
                            style={{
                              position: "absolute",
                              left: 0,

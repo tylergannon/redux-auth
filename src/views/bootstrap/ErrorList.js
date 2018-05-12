@@ -28,7 +28,7 @@ class ErrorList extends React.Component {
                 key={i}
                 className="control-label modal-error-item"
                 style={{paddingLeft: "20px", position: "relative"}}>
-                <i class="fas fa-exclamation" style={{position: "absolute", left: 0, top: 2}} />{err}
+                <i className="fas fa-exclamation" style={{position: "absolute", left: 0, top: 2}} />{err}
               </p>
             );
           })}
@@ -37,7 +37,7 @@ class ErrorList extends React.Component {
     } else {
       return (
         <p>
-          <i class="fas fa-exclamation" /> There was an error processing
+          <i className="fas fa-exclamation" /> There was an error processing
           this form. Please check each field and try again.
         </p>
       );

@@ -3,8 +3,8 @@ export const AUTHENTICATE_COMPLETE = "AUTHENTICATE_COMPLETE";
 export const AUTHENTICATE_ERROR    = "AUTHENTICATE_ERROR";
 export const AUTHENTICATE_FAILURE    = "AUTHENTICATE_FAILURE";
 
-export function authenticateStart() {
-  return { type: AUTHENTICATE_START };
+export function authenticateStart(settings) {
+  return { type: AUTHENTICATE_START, settings };
 }
 export function authenticateComplete(user) {
   return { type: AUTHENTICATE_COMPLETE, user };

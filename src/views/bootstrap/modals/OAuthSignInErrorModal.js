@@ -11,7 +11,7 @@ class OAuthSignInErrorModal extends React.Component {
         onClosed={hideOAuthSignInErrorModal}
         title="OAuth Sign In Error">
         <p>
-        <i class="fas fa-exclamation" /> There was an error
+        <i className="fas fa-exclamation" /> There was an error
           authenticating your account. Please try again.
         </p>
       </Modal>

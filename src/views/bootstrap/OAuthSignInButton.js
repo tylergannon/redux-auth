@@ -20,7 +20,7 @@ class OAuthSignInButton extends React.Component {
   static defaultProps = {
     signInParams: {},
     children: <span>OAuth Sign In</span>,
-    icon: <i class="fas fa-sign-in-alt"></i>,
+    icon: <i className="fas fa-sign-in-alt"></i>,
     next: () => {}
   };
 

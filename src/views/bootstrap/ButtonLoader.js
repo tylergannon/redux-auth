@@ -16,7 +16,7 @@ class ButtonLoader extends React.Component {
   };
 
   static defaultProps = {
-    icon: <i class="fas fa-heart"></i>,
+    icon: <i className="fas fa-heart"></i>,
     loading: false,
     spinConfig: {
       lines: 10,

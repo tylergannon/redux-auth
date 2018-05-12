@@ -25,7 +25,7 @@ export function emailSignInError(endpoint, errors) {
   return { type: EMAIL_SIGN_IN_ERROR, errors, endpoint };
 }
 export function emailSignIn(body, endpointKey) {
-  return dispatch => {
+  return async (dispatch) => {
     // save previous endpoint key in case of failure
     var prevEndpointKey = getCurrentEndpointKey();
 
@@ -36,7 +36,7 @@ export function emailSignIn(body, endpointKey) {
     dispatch(storeCurrentEndpointKey(currentEndpointKey));
     dispatch(emailSignInStart(currentEndpointKey));
 
-    return fetch(getEmailSignInUrl(currentEndpointKey), {
+    let response = await fetch(getEmailSignInUrl(currentEndpointKey), {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -44,14 +44,15 @@ export function emailSignIn(body, endpointKey) {
       method: "post",
       body: JSON.stringify(body)
     })
-      .then(parseResponse)
-      .then((user) => dispatch(emailSignInComplete(currentEndpointKey, user)))
-      .catch((errors) => {
-        // revert endpoint key to what it was before failed request
-        setCurrentEndpointKey(prevEndpointKey);
-        dispatch(storeCurrentEndpointKey(prevEndpointKey));
-        dispatch(emailSignInError(currentEndpointKey, errors));
-        throw errors;
-      });
+
+    let user = await parseResponse(response)
+    try {
+        return dispatch(emailSignInComplete(currentEndpointKey, user))
+    } catch (errors) {
+      setCurrentEndpointKey(prevEndpointKey);
+      dispatch(storeCurrentEndpointKey(prevEndpointKey));
+      dispatch(emailSignInError(currentEndpointKey, errors));
+      throw errors;
+    }
   };
 }

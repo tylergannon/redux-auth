@@ -13,7 +13,7 @@ class DestroyAccountButton extends React.Component {
 
   static defaultProps = {
     children: <span>Destroy Account</span>,
-    icon: <i class="fas fa-trash-alt"></i>
+    icon: <i className="fas fa-trash-alt"></i>
   };
 
   getEndpoint () {
