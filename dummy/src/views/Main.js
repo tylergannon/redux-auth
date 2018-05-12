@@ -5,7 +5,7 @@ import ExampleWell from "./partials/ExampleWell";
 import RequestTestButton from "./partials/RequestTestButton";
 import { browserHistory } from "react-router";
 import { updateDemoTheme, updateDemoEndpoint } from "../actions/demo-ui";
-import { PageHeader, Row, ButtonGroup, Table } from "react-bootstrap";
+import { Row, ButtonGroup, Table } from "reactstrap";
 import { connect } from "react-redux";
 import * as BSTheme from "../../../src/views/bootstrap";
 import * as DefaultTheme from "../../../src/views/default";
@@ -42,7 +42,7 @@ class Main extends React.Component {
 
     return (
       <div>
-        <PageHeader>Redux Auth Demo</PageHeader>
+        <h1 className="page-header">Redux Auth Demo</h1>
 
         <Row>
           <IndexPanel header="Current User">

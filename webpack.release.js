@@ -1,11 +1,67 @@
+var fs = require('fs');
 var webpack = require("webpack");
 var path = require("path");
 
+function loadBabel() {
+  var babelrc = fs.readFileSync('./.babelrc');
+  var babelrcObject = {};
+  
+  try {
+    babelrcObject = JSON.parse(babelrc);
+  } catch (err) {
+    console.error('==>     ERROR: Error parsing your .babelrc.');
+    console.error(err);
+  }
+  
+  
+  var babelrcObjectDevelopment = babelrcObject.env && babelrcObject.env.development || {};
+  
+  // merge global and dev-only plugins
+  var combinedPlugins = babelrcObject.plugins || [];
+  combinedPlugins = combinedPlugins.concat(babelrcObjectDevelopment.plugins);
+  
+  var babelLoaderQuery = Object.assign({}, babelrcObjectDevelopment, babelrcObject, {plugins: combinedPlugins});
+  delete babelLoaderQuery.env;
+  
+  // Since we use .babelrc for client and server, and we don't want HMR enabled on the server, we have to add
+  // the babel plugin react-transform-hmr manually here.
+  
+  // make sure react-transform is enabled
+  babelLoaderQuery.plugins = babelLoaderQuery.plugins || [];
+  var reactTransform = null;
+  for (var i = 0; i < babelLoaderQuery.plugins.length; ++i) {
+    var plugin = babelLoaderQuery.plugins[i];
+    if (Array.isArray(plugin) && plugin[0] === 'react-transform') {
+      reactTransform = plugin;
+    }
+  }
+  
+  if (!reactTransform) {
+    reactTransform = ['react-transform', {transforms: []}];
+    babelLoaderQuery.plugins.push(reactTransform);
+  }
+  
+  if (!reactTransform[1] || !reactTransform[1].transforms) {
+    reactTransform[1] = Object.assign({}, reactTransform[1], {transforms: []});
+  }
+  
+  // make sure react-transform-hmr is enabled
+  reactTransform[1].transforms.push({
+    transform: 'react-transform-hmr',
+    imports: ['react'],
+    locals: ['module']
+  });
+  return babelLoaderQuery  
+}
+
+
 module.exports = {
+  devtool: 'source-map',
+  context: path.resolve(__dirname),
+  mode: "production",
+  
   target:  "web",
   cache:   false,
-  context: __dirname,
-  devtool: false,
   entry:   {
     "index":             "./src/index",
     "bootstrap-theme":   "./src/views/bootstrap/index",
@@ -16,6 +72,28 @@ module.exports = {
     path:          path.join(__dirname),
     filename:      "[name].js",
     libraryTarget: "commonjs"
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "async",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+          vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10
+          },
+      default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true
+          }
+      }
+   }
   },
   externals: [
     function(rtx, req, cb) {
@@ -65,26 +143,25 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({__CLIENT__: true, __SERVER__: false}),
     new webpack.DefinePlugin({"process.env": {NODE_ENV: "\"production\""}}),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module:  {
-    loaders: [
-      { include: /\.json$/, loaders: ["json"] },
-      { include: /\.js$/, loaders: ["babel?cacheDirectory&presets[]=es2015&presets[]=react&presets[]=stage-0"], exclude: /node_modules/ }
+    rules: [
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.jsx?$/, exclude: /node_modules/, 
+        loader: ['babel-loader'] }
     ]
   },
   resolve: {
     alias: {
       react: path.join(__dirname, "node_modules/react")
     },
-    modulesDirectories: [
+    modules: [
       "src",
       "node_modules",
       "web_modules"
     ],
-    extensions: ["", ".json", ".js"]
+    extensions: [".json", ".js"]
   },
   node:    {
     __dirname: true,

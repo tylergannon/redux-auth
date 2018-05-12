@@ -1,7 +1,7 @@
-import React, { PropTypes } from "react";
+import React from "react"
+import PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import ButtonLoader from "./ButtonLoader";
-import { Glyphicon } from "react-bootstrap";
 import { oAuthSignIn as _oAuthSignIn } from "../../actions/oauth-sign-in";
 
 // hook for rewire
@@ -20,7 +20,7 @@ class OAuthSignInButton extends React.Component {
   static defaultProps = {
     signInParams: {},
     children: <span>OAuth Sign In</span>,
-    icon: <Glyphicon glyph="log-in" />,
+    icon: <i class="fas fa-sign-in-alt"></i>,
     next: () => {}
   };
 

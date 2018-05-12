@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from "react"
+import PropTypes from 'prop-types'
+import { Modal, Button } from 'reactstrap';
 import { connect } from "react-redux";
 import { dismissRequestTestSuccessModal } from "../../actions/request-test-buttons";
 

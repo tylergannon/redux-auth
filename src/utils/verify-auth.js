@@ -119,7 +119,7 @@ export function fetchToken({rawEndpoints, cookies, currentLocation}) {
   });
 }
 
-function verifyAuth(rawEndpoints, {isServer, cookies, currentLocation}) {
+export function verifyAuth(rawEndpoints, {isServer, cookies, currentLocation}) {
   return new Promise((resolve, reject) => {
     if (isServer) {
       return fetchToken({rawEndpoints, cookies, currentLocation})
